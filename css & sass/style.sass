@@ -22,10 +22,26 @@ p {
     margin: 0;
 }
 
+section {
+    padding: 4em 0;
+}
+
 .container {
     width: 85%;
     max-width: 85em;
     margin: 0 auto;
+}
+
+.split {
+    display: flex;
+    gap: 1em;
+    justify-content: center;
+    flex-wrap: wrap;
+
+    & > * {
+        flex-basis: 30%;
+        min-width: 15em;
+    }
 }
 
 .spacing > * + * {
@@ -61,7 +77,11 @@ p {
 }
 
 .section-title {
-
+    text-align: center;
+    font-size: clamp(2.5rem, calc(5vw + 1rem), 4rem);
+    line-height: 1;
+    color: #17353d;
+    margin-bottom: 4rem;
 }
 
 .hero {
@@ -80,4 +100,124 @@ p {
         background-repeat: no-repeat;
         background-position: center;
     }
+}
+
+.featured {
+    background: #eee;
+
+    &__item {
+        display: block;
+        position: relative;
+        transform: scale(.85);
+        transition: transform 0.25s ease-in-out;
+        text-decoration: none;
+        color: darkslategrey;
+        text-align: center;
+        line-height: 1.2;
+
+        &:hover,
+        &:focus {
+            transform: scale(1);
+
+            .featured__details {
+                opacity: 1;
+                text-shadow: 0 0 .5em rgba(white, 1);
+            }
+        }
+
+        &::after {
+            content: '';
+            position: absolute;
+            top: 10%;
+            right: 10%;
+            padding: 80% 80% 0 0;
+            border-radius: 50%;
+            background: #56B4D3;
+            z-index: -1;
+        }
+    }
+
+    &__details {
+        opacity: 0;
+        transition: opacity 250ms linear;
+
+        span {
+            display: block;
+            font-weight: 700;
+            font-size: 2.5rem;
+        }
+    }
+}
+
+.product {
+    background: radial-gradient(
+        var(--clr-inner, #348F50), 
+        var(--clr-outter, #56B4D3)
+        );
+    padding: 3em;
+    margin-bottom: 3em;
+    border-radius: 1em;
+
+    &__title {
+        font-size: clamp(2rem (5vw, 1rem), 4rem);
+        text-transform: uppercase;
+        line-height: 1.1;
+        color: white;
+        text-shadow: 2px 8px 6px rgba(0,0,0,0.2),
+                 0px -5px 35px rgba(255,255,255,0.3);
+    }
+
+    &__image {
+        margin: -5em 0 0 0;
+    }
+
+    @media (min-width: 45em) {
+        text-align: left;
+        margin-bottom: 9em;
+
+        &__title {
+            font-size: 4rem;
+            margin: 0;
+        }
+
+        &__image {
+        float: right;
+        width: 50%;
+        shape-outside: url(../img/shoe-1.png);
+        shape-margin: 10em;
+        margin: 0 -5em 0 0;
+        }
+
+        &.shoe-left {
+
+            .product__image {
+                float: left;
+                shape-outside: url(../img/shoe-2.png);
+                margin: 0 0 0 -5em;
+                shape-margin: 2em;
+            }
+        }
+    }
+}
+
+.hero {
+    --clr-accent: rgb(255, 196, 0);
+}
+
+.shoe-red {
+    --clr-inner: #F09819;
+    --clr-outter: #FF512F;
+    --clr-accent: blue;
+}
+
+.shoe-white {
+    --clr-inner: #F7BB97;
+    --clr-outter: #DD5E89;
+    --clr-accent: lime;
+}
+
+.shoe-blue {
+    --clr-inner: #6dd5ed;
+    --clr-outter: #2193b0;
+    --clr-accent:red;
 }
